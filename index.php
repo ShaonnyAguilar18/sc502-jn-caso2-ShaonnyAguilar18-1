@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Obtener solicitudes pendientes
     if ($_GET['option'] ?? "" == "solicitudes_json") {
         $admin = new AdminController();
-        //$admin->getSolicitudesJson();
+        $admin->getSolicitudesJson();
         exit;
     }
 }
