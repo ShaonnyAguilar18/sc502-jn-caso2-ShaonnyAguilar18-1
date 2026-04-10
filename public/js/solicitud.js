@@ -11,9 +11,9 @@ $(function () {
                     html += `
                         <tr>
                             <td>${s.id}</td>
-                            <td>${s.taller_nombre}</td>
-                            <td>${s.username}</td>
-                            <td>${s.fecha_solicitud}</td>
+                            <td>${s.taller}</td>
+                            <td>${s.usuario}</td>
+                            <td>${s.fecha}</td>
                             <td>
                                 <button class="btn btn-success btn-sm btn-aprobar" data-id="${s.id}">Aprobar</button>
                                 <button class="btn btn-danger btn-sm btn-rechazar" data-id="${s.id}">Rechazar</button>

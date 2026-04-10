@@ -48,7 +48,10 @@ class Solicitud
     //listar solicitudes pendientes para el adim
     public function getPendientes()
     {
-        $sql = "SELECT s.id, u.username, t.nombre as taller_nombre, s.fecha_solicitud 
+        $sql = "SELECT s.id, 
+        u.username AS usuario, 
+        t.nombre AS taller, 
+        s.fecha_solicitud AS fecha
                 FROM solicitudes s
                 JOIN usuarios u ON s.usuario_id = u.id
                 JOIN talleres t ON s.taller_id = t.id

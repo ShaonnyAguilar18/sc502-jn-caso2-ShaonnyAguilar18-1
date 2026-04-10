@@ -39,14 +39,27 @@ class TallerController
     }
     
     public function solicitar()
-    {
-        if (!isset($_SESSION['id'])) {
-            echo json_encode(['success' => false, 'error' => 'Debes iniciar sesión']);
-            return;
-        }
-        
-        $tallerId = $_POST['taller_id'] ?? 0;
-        $usuarioId = $_SESSION['id'];
+{
+    header('Content-Type: application/json'); // Crucial para que JS sepa que es JSON
 
+    if (!isset($_SESSION['id'])) {
+        echo json_encode(['success' => false, 'error' => 'Sesión expirada']);
+        return;
     }
+    
+    $tallerId = $_POST['taller_id'] ?? 0;
+    $usuarioId = $_SESSION['id'];
+
+    if ($this->solicitudModel->existeSolicitud($usuarioId, $tallerId)) {
+        echo json_encode(['success' => false, 'error' => 'Ya solicitaste este taller']);
+        return;
+    }
+
+    if ($this->solicitudModel->create($usuarioId, $tallerId)) {
+        // En lugar de que salga un "1", enviamos esto:
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'error' => 'Error en DB']);
+    }
+}
 }
